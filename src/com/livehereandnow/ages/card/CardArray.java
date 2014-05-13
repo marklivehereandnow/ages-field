@@ -15,7 +15,9 @@ import java.util.List;
 public class CardArray extends ArrayList<Card> {
 
     private String title = "---";
-
+    public CardArray(){
+        title="---";
+    }
     public CardArray(String str) {
         title = str;
     }
@@ -36,12 +38,12 @@ public class CardArray extends ArrayList<Card> {
     /**
      * 生產
      */
-    public void produce(){
-         for (int k = 0; k < size(); k++) {
+    public void produce() {
+        for (int k = 0; k < size(); k++) {
             get(k).produce();
         }
     }
-    
+
     public Card getCardByName(String str) {
         //   List<Card> list=new ArrayList<>();
         for (int k = 0; k < size(); k++) {
@@ -71,30 +73,19 @@ public class CardArray extends ArrayList<Card> {
             case 1:// for CardRow
 //                System.out.println("" + title);
                 System.out.print("" + title + " (" + size() + ") ");
-
                 for (int m = 0; m < size(); m++) {
-                    System.out.print(m+get(m).toString(style)+" ");
+                    System.out.print(m + get(m).toString(style) + " ");
                 }
                 break;
 
             case 2:// for 實驗室
+            case 3:// for 政府區
                 System.out.print("" + title + " ");
-
                 for (int m = 0; m < size(); m++) {
-//                    System.out.println(get(m).toString());
-                    Card card = get(m);
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("[");
-                    sb.append(card.getName());
-                    sb.append(" 黃點");
-                    sb.append(card.getTokenYellow());
-                    sb.append(" 藍點");
-                    sb.append(card.getTokenBlue());
-
-                    sb.append("]");
-                    System.out.print(sb.toString());
+                    System.out.print(m + get(m).toString(style) + " ");
                 }
                 break;
+
             default:
                 for (int m = 0; m < size(); m++) {
                     System.out.print(get(m).toString());

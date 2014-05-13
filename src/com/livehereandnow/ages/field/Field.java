@@ -19,24 +19,25 @@ import java.util.List;
  */
 public class Field {
 
-    CardArray allCards;
-    CardArray 卡牌列;
-    CardArray 時代A內政牌;
-    CardArray 時代I內政牌;
-    CardArray 時代II內政牌;
-    CardArray 時代III內政牌;
-    CardArray 時代A軍事牌;
-    CardArray 時代I軍事牌;
-    CardArray 時代II軍事牌;
-    CardArray 時代III軍事牌;
-    CardArray 未來事件;
-    CardArray 當前事件;
+    private CardArray allCards;
+    private CardArray qryCards;
+    private CardArray 卡牌列;
+    private CardArray 時代A內政牌;
+    private CardArray 時代I內政牌;
+    private CardArray 時代II內政牌;
+    private CardArray 時代III內政牌;
+    private CardArray 時代A軍事牌;
+    private CardArray 時代I軍事牌;
+    private CardArray 時代II軍事牌;
+    private CardArray 時代III軍事牌;
+    private CardArray 未來事件;
+    private CardArray 當前事件;
 
-    FieldPlayer p1;
-    FieldPlayer p2;
-    FieldPlayer currentPlayer;
+    private FieldPlayer p1;
+    private FieldPlayer p2;
+    private FieldPlayer currentPlayer;
 
-    Points round;
+    private Points round;
 
     public void 交換玩家() {
         if (currentPlayer == p1) {
@@ -45,7 +46,7 @@ public class Field {
         }
         if (currentPlayer == p2) {
             currentPlayer = p1;
-            System.out.println("auto to next 回合");
+//            System.out.println("auto to next 回合");
             round.addPoints(1);
             return;
         }
@@ -123,13 +124,32 @@ public class Field {
         return round;
     }
 
+    public void showCardInfo (int id){
+        System.out.println(" qry card id="+id);
+        System.out.println(" size="+qryCards.size());
+        
+        for (Card card:qryCards){
+            if (card.getId()==id){
+                System.out.println(card.toString(0));
+                
+                return;
+            }
+        }
+    }
+    
     public Field() {
         initField();
     }
 
     public void initField() {
         allCards = new CardArray("All Cards");
+//        qryCards = new CardArray("qryCards");
+        
         allCards = CardBank.getInstance().getAllCards();
+        
+//        CardBank cb2=new CardBank();
+                
+        qryCards = CardBank.getInstance().getAllCards();
 
         卡牌列 = new CardArray("卡牌列");
         時代A內政牌 = new CardArray("時代A內政牌");
@@ -298,9 +318,10 @@ public class Field {
             return name;
         }
 
-        public void pay內政點數(int cost){
-            內政點數.addPoints((-1)*cost);
+        public void pay內政點數(int cost) {
+            內政點數.addPoints((-1) * cost);
         }
+
         public Points get內政點數() {
             return 內政點數;
         }
@@ -564,7 +585,7 @@ public class Field {
             笑臉_幸福指數.show();
             工人區_黃點.show();
             領袖區.show(2);
-            政府區.show(2);
+            政府區.show(3);
             實驗室.show(2);
             神廟區.show(2);
             農場區.show(2);
